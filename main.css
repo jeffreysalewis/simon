@@ -26,3 +26,12 @@ menu {
     flex-direction: row !important;
     list-style: none;
 }
+
+.navbar-brand {
+    padding-left: 0.3em;
+    border-bottom: solid rgb(182, 182, 182) thin;
+}
+
+menu .nav-item {
+    padding: 0 0.3em;
+}
