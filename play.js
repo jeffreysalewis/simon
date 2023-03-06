@@ -58,6 +58,17 @@ class Game {
         playerNameEl.textContent = this.getPlayerName();
     }
 
+    async PressButton(button) {
+        if (this.allowPlayer) {
+            this.allowPlayer = false;
+            await this.buttons.get(button.id).press(1.0);
+
+            if(this.sequence[this.playerPlaybackPos].el.id === button.id) {
+                this.playerPlaybackPos++;
+            }
+        }
+    }
+
     getPlayerName() {
         return localStorage.getItem('userName') ?? 'Mystery player';
     }
