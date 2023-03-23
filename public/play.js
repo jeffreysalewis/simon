@@ -126,36 +126,52 @@ const btnDescriptions = [
       return buttons[Math.floor(Math.random() * this.buttons.size)];
     }
   
-    saveScore(score) {
+    async saveScore(score) {
       const userName = this.getPlayerName();
-      let scores = [];
-      const scoresText = localStorage.getItem('scores');
-      if (scoresText) {
-        scores = JSON.parse(scoresText);
-      }
-      scores = this.updateScores(userName, score, scores);
-  
-      localStorage.setItem('scores', JSON.stringify(scores));
-    }
-  
-    updateScores(userName, score, scores) {
       const date = new Date().toLocaleDateString();
       const newScore = { name: userName, score: score, date: date };
+
+      try {
+        const response = await fetch('api/score', {
+          method: 'POST',
+          headers: { 'content-type': 'application/json' },
+          body: JSON.stringify(newScore),
+        });
+
+        //store what the service gave us as the high scores
+        const scores = await response.json();
+        localStorage.setItem('scores', JSON.stringify(scores));
+      } catch {
+        //ifthere was an error then just track scores locally
+        this.updateScoresLocal(newScore);
+      }
+    }
+
+    updateScoresLocal(newScore) {
+      let scores = [];
+      const scoresText = localStorage.getItem('scores');
+      if(scoresText) {
+        scores = JSON.parse(scores.Text);
+      }
+
       let found = false;
-      for (const [i, prevScore] of scores.entries()) {
-        if (score > prevScore.score) {
+      for(const [i, prevScore] of scores.entries()) {
+        if(newScore > prevScore.score) {
           scores.splice(i, 0, newScore);
           found = true;
           break;
         }
       }
-      if (!found) {
+
+      if(!found) {
         scores.push(newScore);
       }
-      if (scores.length > 10) {
+
+      if(scores.length > 10) {
         scores.length = 10;
       }
-      return scores;
+
+      localStorage.setItem('scores', JSON.stringify(scores));
     }
   }
   
