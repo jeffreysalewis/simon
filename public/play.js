@@ -142,7 +142,7 @@ class Game {
       const scores = await response.json();
       localStorage.setItem('scores', JSON.stringify(scores));
     } catch {
-      //ifthere was an error then just track scores locally
+      //if there was an error then just track scores locally
       this.updateScoresLocal(newScore);
     }
   }
