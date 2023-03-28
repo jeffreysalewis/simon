@@ -1,6 +1,5 @@
-.vscode/
 .DS_Store
 node_modules/
-dist/
+.vscode/
 dbkeys.sh
 cookie.txt

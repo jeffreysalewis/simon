@@ -6,7 +6,6 @@ const DB = require('./database.js');
 
 const authCookieName = 'token';
 
-//the service port. in production the application is statically hosted by the service on the same port.
 // The service port may be set on the command line
 const port = process.argv.length > 2 ? process.argv[2] : 3000;
 
