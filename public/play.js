@@ -190,7 +190,7 @@ class Game {
   //functionality for peer communication using websocket
 
   configureWebSocket() {
-    const protocal = window.location.protocol === 'http:' ? 'ws' : 'wss';
+    const protocol = window.location.protocol === 'http:' ? 'ws' : 'wss';
     this.socket = new WebSocket(`${protocol}://${window.location.host}/ws`);
     this.socket.onopen = (event) => {
       this.displayMsg('system', 'game', 'connected');
@@ -199,7 +199,7 @@ class Game {
       this.displayMsg('system', 'game', 'disconnected');
     };
     this.socket.onmessage = async (event) => {
-      const msy = JSON.parse(await event.data.text());
+      const msg = JSON.parse(await event.data.text());
       if(msg.type === GameEndEvent) {
         this.displayMsg('player', msg.from, `scored ${msg.value.score}`);
       } else if(msg.type === GameStartEvent) {
