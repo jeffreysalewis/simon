@@ -1,5 +1,19 @@
-.DS_Store
-node_modules/
-.vscode/
+#.DS_Store
+# node_modules/
+#.vscode/
 dbkeys.sh
 cookie.txt
+
+# dependencies
+node_modules
+/.pnp
+.pnp.js
+
+# production
+/build
+
+# misc
+.DS_Store
+
+npm-debug.log*
+.vscode
