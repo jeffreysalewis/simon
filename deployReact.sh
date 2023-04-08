@@ -17,11 +17,12 @@ printf "\n----> Deploying $service to $hostname with $key\n"
 
 # Step 1
 printf "\n----> Build the distribution package\n"
+npm run build
 rm -rf dist
 mkdir dist
-cp -r public dist
-cp *.js dist
-cp package* dist
+cp -rf build dist/public
+cp service/*.js dist
+cp service/package* dist
 
 # Step 2
 printf "\n----> Clearing out previous distribution on the target\n"
