@@ -10,7 +10,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import './app.css';
 
 function App() {
-    const [userName, setUserName] = React.useState(localStorage.getItem('userName') || "");
+    const [userName, setUserName] = React.useState(localStorage.getItem('userName') || '');
 
     //asynchronously determine if the user is authenticated by callin the service
     const [authState, setAuthState] = React.useState(AuthState.Unknown);
@@ -40,7 +40,7 @@ function App() {
                     </div>
                     <menu className='navbar-nav'>
                         <li className='nav-item'>
-                            <NavLink className='nav-link' to="">
+                            <NavLink className='nav-link' to=''>
                                 Login
                             </NavLink>
                         </li>
